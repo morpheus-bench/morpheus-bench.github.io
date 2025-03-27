@@ -1,5 +1,5 @@
 # MORPHEUS Website
 
-Website for the [paper "MORPHEUS: MOdel Reasoning for PHysical Experiments Understanding and Scoring Benchmark"]
+Website for the [paper "MORPHEUS: Benchmarking Physical Reasoning of Video Generative Models with Real Physical Experiments"]
 
 Update
