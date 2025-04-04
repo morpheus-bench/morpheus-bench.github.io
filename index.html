@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="">
+  <meta property="og:title" content="MORPHEUS"/>
+  <meta property="og:description" content="MORPHEUS: Benchmarking Physical Reasoning of Video Generative Models with Real Physical Experiments"/>
+  <meta property="og:url" content="https://morpheus-bench.github.io/"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <!-- <meta property="og:image" content="" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/> -->
+
+  <meta name="twitter:title" content="MORPHEUS">
+  <meta name="twitter:description" content="">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimensions are 1200X600-->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="video generation models, physical reasoning, physical laws, physical score, statistical score, physical experiments, physical invariances">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>MORPHEUS</title>
+  <link rel="icon" type="image/x-icon" href="./static/images/avatar.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+  <!-- Add CSS for experiment filter buttons -->
+  <style>
+    .experiment-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .experiment-btn {
+      padding: 8px 15px;
+      border: 1px solid #ddd;
+      background-color: #f8f9fa;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .experiment-btn:hover {
+      background-color: #e9ecef;
+    }
+    
+    .experiment-btn.active {
+      background-color: #007bff;
+      color: white;
+      border-color: #007bff;
+    }
+
+    #toggleButton:hover {
+    background-color: #e8e8e8;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <!--<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>-->
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <!-- <script src="./static/js/bulma-carousel.min.js"></script> -->
+  <script src="./static/js/bulma-carousel.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Add these in the head section -->
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">MORPHEUS: Benchmarking Physical Reasoning of Video Generative Models with Real Physical Experiments</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <p>Anonymous submission</p>&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+
+
+
+
+
+
+            </div>
+
+            <div class="is-size-4" style="padding-top: 0.25em;">
+            </div>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+              <!-- OpenReview link -->
+              <!-- <span class="link-block">
+                <a href="XXX" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="far fa-circle"></i>
+                  </span>
+                  <span>OpenReview</span>
+                </a>
+                &nbsp;
+              </span>
+               -->
+              <!-- <span class="link-block">
+                <a href="XXX" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>PDF</span>
+                </a>
+                &nbsp;
+              </span>                 -->
+
+              <!-- ArXiv abstract Link -->
+              <!-- <span class="link-block">
+                <a href="XXX" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+                &nbsp;
+              </span> -->
+
+              <!-- Github link -->
+              <!-- <span class="link-block">
+                <a href="XXX" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+                </a>
+                &nbsp;
+              </span> -->
+
+              <!-- Github link -->
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Paper abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Summary</h2>
+          <div class="content has-text-justified">
+            <p>
+              As the development of Video Generation Models (VGMs) progresses, many are claimed to possess world modeling capabilities—the ability to generate arbitrary realistic videos. These models have significant potential for applications in fields such as robotics and autonomous driving as well as in scientific simulation and medical data augmentation. However, a critical question arises: to what extent do these models adhere to physical laws? To address this, we introduce MORPHEUS, a novel benchmark designed to evaluate the intrinsic physical reasoning capabilities of VGMs. MORPHEUS provides a curated dataset comprising 80 real-world videos of experiments that capture physical phenomena, guided by specific physical invariances such as energy or momentum conservation. These invariances reveal the specific physical phenomena missed by the models, enabling a fine-grained evaluation and forming the foundation of our interpretable Physical Score measure. We also propose a Statistical Score, based on Physics-Informed Neural Networks (PINNs), to provide a complementary evaluation across a broader range of physical scenarios. Our findings reveal that even with advanced prompting techniques, such as multi-frame prompting and enhanced textual descriptions, current VGMs demonstrate substantial limitations in their ability to model and understand physical phenomena.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+
+  <br>
+
+<!-- DATASET SECTION -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3" style="text-align: center;">Morpheus</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div style="text-align: center;">
+            <img src="./static/images/figure1.png" style="width: 70%;" alt="Morpheus"/>
+          </div>
+          <div class="content has-text-justified"><br />
+            The Morpheus benchmark. Physical Evaluation of VGMs for the holonomic pendulum experiment using Dynamical and Physical Invariance scores computed from the extracted trajectories.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Video Configuration and Grid Section -->
+  <section class="section hero is-light">
+    <div class="container is-fluid">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-12">
+          <h2 class="title is-3">Video examples</h2>
+          
+          <!-- Configuration Selector -->
+          <div class="configuration-selector" style="margin-bottom: 2rem;">
+            <div class="field is-grouped is-grouped-centered">
+              <div class="control">
+                <div class="select">
+                  <select id="model-select">
+                    <option value="real-world">Real World</option>
+                    <option value="CogVideo">CogVideo</option>
+                    <option value="COSMOS">COSMOS</option>
+                    <option value="LTX">LTX</option>
+                    <option value="PyramidalFlow">PyramidalFlow</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control">
+                <div class="select">
+                  <select id="conditioning-select">
+                    <option value="single_frame_conditioning">Single Frame</option>
+                    <option value="multi_frame_conditioning">Multi Frame</option>
+                    <option value="keyframe_interpolation">Keyframe Interpolation</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control">
+                <div class="select">
+                  <select id="prompt-select">
+                    <option value="plain">Plain Text</option>
+                    <option value="enhanced">Enhanced Text</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Grid -->
+          <div class="video-grid">
+            <!-- First Row -->
+            <div class="columns is-centered">
+              <div class="column is-4">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline class="video-player" id="falling-ball">
+                    <source type="video/webm">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <p class="video-caption">Falling Ball</p>
+              </div>
+              <div class="column is-4">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline class="video-player" id="bouncing-ball">
+                    <source type="video/webm">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <p class="video-caption">Bouncing Ball</p>
+              </div>
+              <div class="column is-4">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline class="video-player" id="projectile">
+                    <source type="video/webm">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <p class="video-caption">Projectile</p>
+              </div>
+            </div>
+            <!-- Second Row -->
+            <div class="columns is-centered">
+              <div class="column is-4">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline class="video-player" id="holonomic-pendulum">
+                    <source type="video/webm">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <p class="video-caption">Holonomic Pendulum</p>
+              </div>
+              <div class="column is-4">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline class="video-player" id="non-holonomic-pendulum">
+                    <source type="video/webm">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <p class="video-caption">Non-holonomic Pendulum</p>
+              </div>
+              <div class="column is-4">
+                <div class="video-wrapper">
+                  <video autoplay loop muted playsinline class="video-player" id="double-pendulum">
+                    <source type="video/webm">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <p class="video-caption">Double Pendulum</p>
+              </div>
+            </div>
+          </div>
+
+          <style>
+            .configuration-selector {
+              margin-bottom: 2rem;
+            }
+            
+            .configuration-selector .select {
+              margin: 0 0.5rem;
+            }
+            
+            .video-grid {
+              margin-top: 2rem;
+              max-width: 1200px;
+              margin-left: auto;
+              margin-right: auto;
+            }
+            
+            .video-grid .columns {
+              margin-bottom: 2rem;
+            }
+            
+            .video-wrapper {
+              width: 100%;
+              position: relative;
+              background: #000;
+              border-radius: 24px;
+              overflow: hidden;
+              box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+              margin: 0 auto;
+              aspect-ratio: 16/9;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              max-width: 350px;
+            }
+            
+            .video-player {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              max-width: 100%;
+              max-height: 100%;
+              display: block;
+              background: #000;
+            }
+            
+            .video-caption {
+              text-align: center;
+              margin-top: 1rem;
+              font-size: 1.1rem;
+              color: #363636;
+            }
+
+            /* Add media query for smaller screens */
+            @media screen and (max-width: 768px) {
+              .video-wrapper {
+                aspect-ratio: 4/3;
+              }
+              
+              .video-player {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          </style>
+
+          <script>
+            async function updateVideoSources() {
+              const modelSelect = document.getElementById('model-select');
+              const conditioningSelect = document.getElementById('conditioning-select');
+              const promptSelect = document.getElementById('prompt-select');
+              const keyframeOption = conditioningSelect.querySelector('option[value="keyframe_interpolation"]');
+
+              const model = modelSelect.value;
+              const conditioning = conditioningSelect.value.toLowerCase().replace(/ /g, '_');
+              const promptType = promptSelect.value.toLowerCase().replace(/ /g, '_');
+
+              const videoIds = ['falling-ball', 'bouncing-ball', 'projectile', 'holonomic-pendulum', 'non-holonomic-pendulum', 'double-pendulum'];
+
+              // Disable/enable conditioning and prompt selects based on model choice
+              const isRealWorld = model === 'real-world';
+              conditioningSelect.disabled = isRealWorld;
+              promptSelect.disabled = isRealWorld;
+
+              // Disable/enable Keyframe Interpolation based on model
+              if (keyframeOption) {
+                if (model !== 'CogVideo' && !isRealWorld) {
+                  keyframeOption.disabled = true;
+                  // If Keyframe Interpolation was selected, switch to Single Frame
+                  if (conditioningSelect.value === 'keyframe_interpolation') {
+                    conditioningSelect.value = 'single_frame_conditioning';
+                    // Explicitly call updateVideoSources again and exit the current run
+                    updateVideoSources();
+                    return; 
+                  }
+                } else {
+                  keyframeOption.disabled = false;
+                }
+              }
+
+              for (const id of videoIds) {
+                const player = document.getElementById(id);
+                 if (!player) {
+                    console.warn(`Player element with ID ${id} not found.`);
+                    continue;
+                }
+                const source = player.querySelector('source');
+                if (!source) {
+                    console.warn(`Source element not found for player ${id}.`);
+                    continue;
+                }
+                const experimentId = id.replace(/-/g, '_'); // e.g., falling-ball -> falling_ball
+                let videoPath = '';
+
+                if (isRealWorld) {
+                  // Construct path for real-world videos
+                  videoPath = `static/videos/real-world/${experimentId}.webm`;
+                } else {
+                  // Construct path for generated videos
+                  videoPath = `static/videos/generated_videos/${conditioning}/${model}/${promptType}/${experimentId}/output_video.webm`;
+                }
+
+
+                try {
+                  // Check if the video file exists
+                  const response = await fetch(videoPath, { method: 'HEAD' });
+                  if (response.ok) {
+                    source.src = videoPath;
+                    player.load(); // Reload the video player with the new source
+                    // It's generally better practice to let users initiate play, but keeping autoplay logic as per original structure
+                    player.play().catch(e => console.log(`Autoplay prevented for ${id}:`, e.message)); // Attempt to play, catch errors
+                  } else {
+                    console.log(`Video not found: ${videoPath}`);
+                    source.removeAttribute('src'); // Clear the source if video not found
+                    player.load(); // Reload player to reflect the empty source
+                  }
+                } catch (error) {
+                  console.error(`Error checking or loading video ${id} at path ${videoPath}:`, error);
+                  source.removeAttribute('src'); // Clear the source on error
+                  player.load(); // Reload player
+                }
+              }
+            }
+
+            // Initialize videos and event listeners when the page loads
+            document.addEventListener('DOMContentLoaded', () => {
+              // Initial call to set videos based on default selections
+              updateVideoSources();
+
+              // Attach event listeners to dropdowns (Ensure this isn't duplicated elsewhere)
+              document.getElementById('model-select').addEventListener('change', updateVideoSources);
+              document.getElementById('conditioning-select').addEventListener('change', updateVideoSources);
+              document.getElementById('prompt-select').addEventListener('change', updateVideoSources);
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <br>
+
+<!-- DATASET SECTION -->
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+  <h1 class="title is-1 mmmu">
+    <!-- <img src="static/images/sgp_icon.png" style="width:1em;vertical-align: middle" alt="Logo"/> -->
+    <span class="mmmu" style="vertical-align: middle">MORPHEUS</span>
+  </h1>
+  </div>
+</section>
+<div class="container">
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <button id="toggleButton" onclick="changeButtonText()" style="font-size: 1.75rem; font-weight: bold; border-radius: 8px; padding: 10px 20px; background-color: #f5f5f5; border: 1px solid #ddd; transition: all 0.3s ease; cursor: pointer;">
+          <b>MORPHEUS Leaderboard</b>
+        </button>
+
+        <!-- Add experiment filter buttons -->
+        <div class="experiment-filter" style="margin-top: 15px; margin-bottom: 15px;">
+          <button class="experiment-btn active" data-experiment="all">All Experiments</button>
+          <button class="experiment-btn" data-experiment="falling ball">Falling Ball</button>
+          <button class="experiment-btn" data-experiment="bouncing ball">Bouncing Ball</button>
+          <button class="experiment-btn" data-experiment="projectile">Projectile</button>
+          <button class="experiment-btn" data-experiment="holonomic pendulum">Holonomic Pendulum</button>
+          <button class="experiment-btn" data-experiment="non-holonomic pendulum">Non-holonomic Pendulum</button>
+          <button class="experiment-btn" data-experiment="double pendulum">Double Pendulum</button>
+        </div>
+
+        <div class="model-labels-container">
+            <span class="leaderboard-label" style="background-color: rgba(249, 242, 248, 1);">real-world</span>
+            <span class="leaderboard-label" style="background-color: rgba(255, 208, 80, 0.15);">single frame</span>
+            <span class="leaderboard-label" style="background-color: rgba(117, 166, 215, 0.1);">multi frame</span>
+            <span class="leaderboard-label" style="background-color: rgba(112, 230, 102, 0.1);">keyframe interpolation</span>
+        </div>
+          <!-- Validation Set Leaderboard -->
+          <table id="table1" class="js-sort-table">
+            <thead>
+            <tr>
+              <th class="js-sort-number"><strong>Model Name</strong></th>
+              <th class="js-sort-date"><strong>Experiment Type</strong></th>
+              <th class="js-sort-number"><strong>Conditioning</strong></th>
+              <th class="js-sort-string"><strong>Prompt Type</strong></th>
+              <th class="js-sort-number"><strong>Discard Rate</strong></th>
+              <th class="js-sort-number"><strong>Physical Invariance Score</strong></th>
+              <th class="js-sort-number"><strong>Dynamical score</strong></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+          <p class="test-desc hidden"> Overall results of different models on Morpheus-bench.</p>
+          
+          <h2 class="title is-3" style="margin-top: 40px;">Results</h2>
+          <div id="plotly-container">
+            <iframe src="plots/scores_agg_plot.html" width="100%" height="660px" style="border:none;"></iframe>
+        </div>
+        <style>
+          .plot-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+          }
+        
+          .plot-grid iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+          }
+        </style>
+        
+        <div class="plot-grid">
+          <iframe src="plots/scores_plot_falling_ball.html"></iframe>
+          <iframe src="plots/scores_plot_bouncing_ball.html"></iframe>
+          <iframe src="plots/scores_plot_projectile.html"></iframe>
+          <iframe src="plots/scores_plot_holonomic_pendulum.html"></iframe>
+          <iframe src="plots/scores_plot_non_holonomic.html"></iframe>
+          <iframe src="plots/scores_plot_double_pendulum.html"></iframe>
+        </div>
+
+        <!-- Video Examples -->
+        <section class="section hero">
+          <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+              <div class="column is-full">
+                <h3 class="title is-3" style="margin-bottom: 2rem;">Discarded videos</h3>
+                
+                <!-- Video Grid -->
+                <div class="columns is-centered">
+                  <!-- First Video -->
+                  <div class="column is-4">
+                    <div class="video-wrapper">
+                      <video autoplay loop muted playsinline class="video-player discarded-video">
+                        <source src="static/videos/discarded/dissaperance.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                    <p class="video-caption">An example of the <b>disappearance</b> of the object (the projectile ball). Model: PyramidalFlow, multi-frame conditioning, enhanced text prompt.</p>
+                  </div>
+                  
+                  <!-- Second Video -->
+                  <div class="column is-4">
+                    <div class="video-wrapper">
+                      <video autoplay loop muted playsinline class="video-player discarded-video">
+                        <source src="static/videos/discarded/duplicate.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                    <p class="video-caption">An example of the <b>duplication</b> of the object (non-holonomic pendulum). Model: COSMOS, multi-frame conditioning, plain text prompt.</p>
+                  </div>
+                  
+                  <!-- Third Video -->
+                  <div class="column is-4">
+                    <div class="video-wrapper">
+                      <video autoplay loop muted playsinline class="video-player discarded-video">
+                        <source src="static/videos/discarded/stillness.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                    <p class="video-caption">An example of the <b>stillness</b> of the object (double pendulum). Model: LTX, single frame conditioning, plain text prompt.</p>
+                  </div>
+                </div>
+
+                <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                    const discardedVideos = document.querySelectorAll('.discarded-video');
+                    
+                    discardedVideos.forEach(video => {
+                      // Add error handling before attempting to play
+                      video.addEventListener('error', function(e) {
+                        console.log('Error loading discarded video:', video.id, e.target.error);
+                      });
+
+                      video.addEventListener('loadeddata', function() {
+                        // Only try to play once the video is actually loaded
+                        video.play().catch(e => {
+                          console.log('Discarded video play failed:', video.id, e);
+                        });
+                      });
+
+                      // Load the video
+                      video.load();
+                    });
+                  });
+                </script>
+
+                <style>
+                  .section.hero {
+                    padding: 3rem 1.5rem;
+                    background-color: white;
+                  }
+
+                  .container.is-max-desktop {
+                    max-width: 100% !important;
+                    width: 100%;
+                    padding: 0 2rem;
+                  }
+
+                  .video-wrapper {
+                    width: 100%;
+                    position: relative;
+                    background: #000;
+                    border-radius: 24px;
+                    overflow: hidden;
+                    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+                    margin: 0 auto;
+                    aspect-ratio: 16/9;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  }
+
+                  .video-player {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    max-width: 100%;
+                    max-height: 100%;
+                    display: block;
+                    background: #000;
+                  }
+
+                  .video-caption {
+                    text-align: center;
+                    margin-top: 1.5rem;
+                    font-size: 1rem;
+                    line-height: 1.4;
+                    color: #363636;
+                  }
+
+                  @media screen and (max-width: 768px) {
+                    .columns {
+                      margin: 0;
+                    }
+                    .column {
+                      padding: 0.5rem;
+                    }
+                    .video-caption {
+                      font-size: 0.9rem;
+                    }
+                    .video-wrapper {
+                      aspect-ratio: 16/9;
+                    }
+                    .video-player {
+                      width: 100%;
+                      height: 100%;
+                    }
+                  }
+                </style>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- End Video Examples -->
+
+        <div id="plotly-container2">
+          <iframe src="plots/discard_rate_agg_plot.html" width="100%" height="900px" style="border:none;"></iframe>
+          <iframe src="plots/depth_cons_agg_plot.html" width="100%" height="660px" style="border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+</div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+              <!-- You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> 
+              This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>. -->
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Add experiment filter JavaScript -->
+  <script>
+    let dataTable;
+    let currentDisplayData = []; 
+    let dataTableInitialized = false;
+    let eventsAttached = false;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // add a helper function to format the number value, support specify the decimal places
+      function formatNumberValue(value, decimals = 2) {
+        if (value === '' || value === 'xxx' || value === null || value === undefined) {
+          return 'xxx';
+        }
+        // try to convert the value to a number
+        const num = parseFloat(value);
+        // check if it is a valid number
+        if (!isNaN(num)) {
+          // format to the specified decimal places
+          return num.toFixed(decimals);
+        }
+        return value;
+      }
+
+      // Initialize dataTable as null
+      // let dataTable = null;
+      window.dataTable = null;
+
+      // Load All Experiments data by default when page loads
+      if (!eventsAttached) {
+        initializeFilters();
+        loadAllExperimentsData();
+        eventsAttached = true;
+      }
+
+
+      // Fetch the CSV data
+      fetch('./summary_old_with_space.csv')
+        .then(response => response.text())
+        .then(data => {
+          // Parse CSV data
+          const parsedData = parseCSV(data);
+          window.originalData = parsedData;
+          // Populate the table
+          // populateTable(parsedData);
+          // Initialize DataTable AFTER the data is loaded
+          // initializeDataTable();
+          // Initialize filters
+          initializeFilters();
+        })
+        .catch(error => {
+          console.error('Error loading CSV data:', error);
+          document.querySelector('#table1 tbody').innerHTML = 
+            '<tr><td colspan="7">Error loading data. Please try again later.</td></tr>';
+        });
+
+      
+      // const allExperimentsBtn = document.querySelector('.experiment-btn[data-experiment="all"]');
+      // allExperimentsBtn.addEventListener('click', function(e) {
+      //   e.preventDefault();
+      //   console.log("All Experiments button clicked");
+        
+      //   // remove the active class from all buttons
+      //   document.querySelectorAll('.experiment-btn').forEach(btn => {
+      //     btn.classList.remove('active');
+      //   });
+        
+      //   // add the active class to the current button
+      //   this.classList.add('active');
+        
+      //   // manually trigger the loading of aggregated data
+      //   loadAllExperimentsData();
+      // });
+      
+      // Function to parse CSV data
+      function parseCSV(csvText) {
+        const lines = csvText.split('\n');
+        const headers = lines[0].split(',');
+        console.log('CSV Headers:', headers); // Debug: log headers
+        const results = [];
+        
+        for(let i = 1; i < lines.length; i++) {
+          if(lines[i].trim() === '') continue;
+          
+          const values = lines[i].split(',');
+          const row = {};
+          
+          headers.forEach((header, index) => {
+            row[header.trim()] = values[index] ? values[index].trim() : '';
+          });
+          
+          results.push(row);
+        }
+        
+        return results;
+      }
+
+      // Helper function to get column value with multiple possible column names
+      function getColumnValue(row, possibleKeys) {
+        for(const key of possibleKeys) {
+          if(row[key] !== undefined && row[key] !== null && row[key] !== '') {
+            return row[key];
+          }
+        }
+        return '';
+      }
+
+      // Function to populate the table
+      function populateTable(data) {
+        const tableBody = document.querySelector('#table1 tbody');
+        tableBody.innerHTML = '';
+
+        // Add experiment type mapping
+        const experimentMapping = {
+          'falling ball': 'Falling Ball',
+          'bouncing ball': 'Bouncing Ball',
+          'projectile': 'Projectile',
+          'holonomic pendulum': 'Holonomic Pendulum',
+          'non-holonomic pendulum': 'Non-holonomic Pendulum',
+          'double pendulum': 'Double Pendulum'
+        };
+        
+        data.forEach(row => {
+          try {
+            // get the experiment type
+            const rawExperimentType = getColumnValue(row, [
+              'experiment', 'Experiment', 'experiment_type', 'Experiment Type'
+            ]);
+            
+            console.log('Raw experiment type:', rawExperimentType);
+            
+            // transform the experiment type
+            const experimentType = experimentMapping[rawExperimentType] || rawExperimentType;
+            
+            // get other column values
+            const modelName = getColumnValue(row, ['model', 'model_name', 'Model Name', 'ModelName', 'Model']);
+            const conditioning = getColumnValue(row, ['conditioning', 'Conditioning']);
+            const promptType = getColumnValue(row, ['prompt_type', 'Prompt Type', 'PromptType', 'prompt', 'Prompt']);
+
+            const rawDiscardRate = getColumnValue(row, ['discard_rate', 'Discard Rate', 'DiscardRate', 'discard', 'Discard']);
+            const rawPhysicalScore = getColumnValue(row, ['overall_mean_physical_score', 'physical_invariance_score', 'Physical Invariance Score', 'Physical Score', 'PhysicalScore']);
+            const rawDynamicalScore = getColumnValue(row, ['overall_mean_statistical_score', 'dynamical_score', 'Dynamical Score', 'DynamicalScore']);
+            // const discardRate = getColumnValue(row, ['discard_rate', 'Discard Rate', 'DiscardRate', 'discard', 'Discard']);
+            // const physicalScore = getColumnValue(row, ['overall_mean_physical_score', 'physical_invariance_score', 'Physical Invariance Score', 'Physical Score', 'PhysicalScore']);
+            // const dynamicalScore = getColumnValue(row, ['overall_mean_statistical_score', 'dynamical_score', 'Dynamical Score', 'DynamicalScore']);
+
+            // format the number value, support specify the decimal places
+            const discardRate = formatNumberValue(rawDiscardRate, 2);
+            const physicalScore = formatNumberValue(rawPhysicalScore, 3);
+            const dynamicalScore = formatNumberValue(rawDynamicalScore, 3);
+          
+            // Determine background color based on category
+            let bgColor = '';
+            if (modelName.includes('real-world') || modelName === 'real-world') {
+              bgColor = 'rgba(249, 242, 248, 1)';  // light pink
+            } else if (conditioning.includes('single frame') || conditioning === 'single frame' || 
+                      conditioning.includes('single frame_conditioning') || conditioning === 'single frame_conditioning') {
+              bgColor = 'rgba(255, 208, 80, 0.15)';  // light yellow
+            } else if (conditioning.includes('multi frame') || conditioning === 'multi frame' || 
+                      conditioning.includes('multi frame') || conditioning === 'multi frame') {
+              bgColor = 'rgba(117, 166, 215, 0.1)';  // light blue
+            } else if (conditioning.includes('keyframe interpolation') || conditioning === 'keyframe interpolation' || 
+                      conditioning.includes('keyframe interpolation') || conditioning === 'keyframe interpolation') {
+              bgColor = 'rgba(112, 230, 102, 0.1)';  // light green
+            }
+
+            // // Map the experiment type from CSV format to display format
+            // const experimentType = experimentTypeMapping[row.experiment_type] || row.experiment_type;
+            
+            // Apply background color to the entire row
+            const tr = document.createElement('tr');
+            tr.style.backgroundColor = bgColor;
+
+            // Add data-experiment attribute for filtering
+            tr.setAttribute('data-experiment', experimentType.toLowerCase());
+
+            // Assuming CSV columns match table columns
+            tr.innerHTML = `
+              <td style="text-align: left;"><b>${modelName || ''}</b></td>
+              <td>${experimentType || ''}</td>
+              <td>${conditioning || ''}</td>
+              <td>${promptType || ''}</td>
+              <td>${discardRate || 'xxx'}</td>
+              <td>${physicalScore || 'xxx'}</td>
+              <td>${dynamicalScore || 'xxx'}</td>
+            `;
+          
+            tableBody.appendChild(tr);
+
+            // // Log key values for debugging
+            // console.log('Model:', modelName);
+            // console.log('Experiment:', experimentType);
+            // console.log('Conditioning:', conditioning);
+
+          } catch (error) {
+            console.error('Error processing row:', error);
+          }
+
+          
+        });
+      }
+
+      // Function to initialize DataTable
+      function initializeDataTable() {
+        try {
+          // destroy the existing DataTable instance if it exists
+          if(dataTable && $.fn.DataTable.isDataTable('#table1')) {
+            dataTable.destroy();
+          }
+          
+          // reinitialize DataTable
+          dataTable = $('#table1').DataTable({
+            paging: false,
+            searching: false,
+            info: false,
+            "order": [],
+            "columnDefs": [
+              { "targets": [0, 1, 2, 3], "orderable": false },
+              { "targets": [4, 5, 6], "orderable": true }
+            ]
+          });
+        } catch (e) {
+          console.error("Error initializing DataTable:", e);
+        }
+      }
+
+      
+
+      // Function to initialize filters
+      function initializeFilters() {
+        if (eventsAttached) return;
+
+        // Get all filter buttons
+        const experimentBtns = document.querySelectorAll('.experiment-btn');
+        
+        // Add click event to each button
+        experimentBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            // Remove active class from all buttons
+            experimentBtns.forEach(b => b.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Get the experiment type to filter by
+            const experimentType = this.getAttribute('data-experiment');
+
+            if (experimentType === 'all') {
+              // Show averages across all experiments
+              displayAllExperimentsData();
+            } else {
+              // Filter by specific experiment type
+              filterBySpecificExperiment(experimentType);
+            }
+          });
+        });
+
+        // // Trigger click on "All Experiments" button by default
+        // document.querySelector('.experiment-btn[data-experiment="all"]').click();
+      }
+
+      // Function to display all experiments data
+      function displayAllExperimentsData() {
+        if (dataTableInitialized && $.fn.DataTable.isDataTable('#table1')) {
+          $('#table1').DataTable().destroy();
+          dataTableInitialized = false;
+        }
+        // empty the table
+        $('#table1 tbody').empty();
+        
+        // get the cached data, if not, load the data
+        if (window.aggregatedData) {
+          console.log("Using cached data for All Experiments");
+          populateTableWithAggregatedData(window.aggregatedData);
+          reinitializeDataTable();
+        } else {
+          console.log("No cached data, loading from CSV");
+          loadAllExperimentsData();
+        }
+      }
+
+      // Function to load all experiments data
+      function loadAllExperimentsData() {
+        console.log('Loading experiment_summary_with_space.csv...');
+
+        // make sure to destroy the existing DataTable instance
+        if($.fn.DataTable.isDataTable('#table1')) {
+          $('#table1').DataTable().destroy();
+          dataTableInitialized = false;
+          console.log('Successfully destroyed existing DataTable');
+        }
+        
+        if ($('#table1').length === 0) {
+          console.error('Table element not found in loadAllExperimentsData');
+          return;
+        }
+
+        if ($('#table1 tbody').length === 0) {
+          $('#table1').append('<tbody></tbody>');
+          console.log('Created missing tbody element');
+        } else {
+          $('#table1 tbody').empty();
+        }
+  
+        // empty the table
+        // $('#table1').find('tbody').empty();
+        const tableBody = document.querySelector('#table1 tbody');
+        if (!tableBody) {
+          const table = document.getElementById('table1');
+          if (table) {
+            const newTbody = document.createElement('tbody');
+            table.appendChild(newTbody);
+            console.log('Created missing tbody element');
+            // use the new created tbody
+            newTbody.innerHTML = '';
+          } else {
+            console.error('Table element not found');
+            return;
+          }
+        } else {
+          tableBody.innerHTML = '';
+        }
+
+        fetch('./experiment_summary_with_space.csv')
+          .then(response => response.text())
+          .then(data => {
+            console.log('Successfully loaded experiment_summary_with_space.csv...');
+            // Parse CSV data
+            const parsedData = parseCSV(data);
+            
+            // fill the table
+            let rowsAdded = 0;
+            parsedData.forEach(row => {
+              try {
+                // get the necessary data
+                const modelName = getColumnValue(row, ['model', 'model_name', 'Model Name', 'ModelName', 'Model']);
+                const experimentType = "All Experiments"; // fixed as All Experiments
+                const conditioning = getColumnValue(row, ['conditioning', 'Conditioning']);
+                const promptType = getColumnValue(row, ['prompt_type', 'Prompt Type', 'PromptType', 'prompt', 'Prompt']);
+                
+                const rawDiscardRate = getColumnValue(row, ['discard_rate', 'Discard Rate', 'DiscardRate', 'discard', 'Discard']);
+                const rawPhysicalScore = getColumnValue(row, ['overall_mean_physical_score', 'physical_invariance_score', 'Physical Invariance Score', 'Physical Score', 'PhysicalScore']);
+                const rawDynamicalScore = getColumnValue(row, ['overall_mean_statistical_score', 'dynamical_score', 'Dynamical Score', 'DynamicalScore']);
+                
+                // format the number value, support specify the decimal places
+                const discardRate = formatNumberValue(rawDiscardRate, 2);
+                const physicalScore = formatNumberValue(rawPhysicalScore, 3);
+                const dynamicalScore = formatNumberValue(rawDynamicalScore, 3);
+
+                // create the table row
+                const tr = document.createElement('tr');
+                tr.setAttribute('data-experiment', 'all');
+                
+                // set the background color
+                let bgColor = '';
+                if (modelName.includes('real-world') || modelName === 'real-world') {
+                  bgColor = 'rgba(249, 242, 248, 1)';  // light pink
+                } else if (conditioning.includes('single frame') || conditioning === 'single frame') {
+                  bgColor = 'rgba(255, 208, 80, 0.15)';  // light yellow
+                } else if (conditioning.includes('multi frame') || conditioning === 'multi frame') {
+                  bgColor = 'rgba(117, 166, 215, 0.1)';  // light blue
+                } else if (conditioning.includes('keyframe interpolation') || conditioning === 'keyframe interpolation') {
+                  bgColor = 'rgba(112, 230, 102, 0.1)';  // light green
+                }
+                
+                tr.style.backgroundColor = bgColor;
+                
+                tr.innerHTML = `
+                  <td style="text-align: left;"><b>${modelName || ''}</b></td>
+                  <td>${experimentType || ''}</td>
+                  <td>${conditioning || ''}</td>
+                  <td>${promptType || ''}</td>
+                  <td>${discardRate || 'xxx'}</td>
+                  <td>${physicalScore || 'xxx'}</td>
+                  <td>${dynamicalScore || 'xxx'}</td>
+                `;
+                
+                tableBody.appendChild(tr);
+                rowsAdded++;
+              } catch (error) {
+                console.error('Error processing row:', error);
+              }
+            });
+
+            console.log('Rows added:', rowsAdded);
+              
+            // reinitialize DataTable
+            // initializeDataTable();
+            // Properly reinitialize DataTable AFTER the DOM has been updated
+            reinitializeDataTable();
+          })
+          .catch(error => {
+            console.error('Error loading experiment_summary_with_space.csv:', error);
+            const tableBody = document.querySelector('#table1 tbody');
+            tableBody.innerHTML = '<tr><td colspan="7" style="text-align: center;">Error loading data</td></tr>';
+          });
+        }
+
+
+
+      function filterBySpecificExperiment(experimentType) {
+        try {
+          // Destroy existing DataTable if it exists
+          if(dataTableInitialized && $.fn.DataTable.isDataTable('#table1')) {
+            $('#table1').DataTable().destroy();
+            dataTableInitialized = false;
+          }
+          
+          if ($('#table1').length === 0) {
+            console.error('Table element not found in filterBySpecificExperiment');
+            return;
+          }
+
+          if ($('#table1 tbody').length === 0) {
+            $('#table1').append('<tbody></tbody>');
+          } else {
+            $('#table1 tbody').empty();
+          }
+          
+          // empty the table
+          // $('#table1 tbody').empty();
+          const tableBody = document.querySelector('#table1 tbody');
+          if (!tableBody) {
+            const table = document.getElementById('table1');
+            if (table) {
+              const newTbody = document.createElement('tbody');
+              table.appendChild(newTbody);
+              console.log('Created missing tbody element');
+              // use the new created tbody
+              newTbody.innerHTML = '';
+            } else {
+              console.error('Table element not found');
+              return;
+            }
+          } else {
+            tableBody.innerHTML = '';
+          }
+
+          // Get the CSV file to load based on experiment type
+          const csvFile = './summary_old_with_space.csv';
+          
+          // Fetch and process the data
+          fetch(csvFile)
+            .then(response => response.text())
+            .then(data => {
+              // Parse CSV data
+              const parsedData = parseCSV(data);
+              
+              // Store the current data for sorting operations
+              currentDisplayData = parsedData;
+          
+              // Filter original data for the specific experiment
+              const filteredData = window.originalData.filter(row => {
+                const rawExperimentType = getColumnValue(row, [
+                  'experiment', 'Experiment', 'experiment_type', 'Experiment Type'
+                ]);
+            
+              // Use the mapping to compare consistently
+              const experimentMapping = {
+                'falling_ball': 'falling ball',
+                'bouncing_ball': 'bouncing ball',
+                'projectile': 'projectile',
+                'holonomic_pendulum': 'holonomic pendulum',
+                'non_holonomic': 'non-holonomic pendulum',
+                'double_pendulum': 'double pendulum'
+              };
+            
+              const normalizedExperiment = experimentMapping[rawExperimentType] || rawExperimentType.toLowerCase();
+              return normalizedExperiment === experimentType;
+            });
+        
+            // Repopulate the table with filtered data
+            populateTable(filteredData);
+
+            // Reinitialize DataTable
+            if (!dataTableInitialized) {
+              reinitializeDataTable();
+            }
+          })
+          .catch(error => {
+            console.error('Error loading summary_old_with_space.csv:', error);
+            const tableBody = document.querySelector('#table1 tbody');
+            tableBody.innerHTML = '<tr><td colspan="7" style="text-align: center;">Error loading data</td></tr>';
+          });
+        } catch (error) {
+          console.error("Error filterBySpecificExperiment:", error);
+        }
+      }
+
+      // Function to filter table by experiment type
+      // function filterTableByExperiment(experimentType) {
+      //   // Get all table rows
+      //   const tableRows = document.querySelectorAll('#table1 tbody tr');
+        
+      //   // Show/hide rows based on experiment type
+      //   tableRows.forEach(row => {
+      //     const rowExperiment = row.getAttribute('data-experiment');
+      //     if (experimentType === 'all' || rowExperiment === experimentType) {
+      //       row.style.display = '';
+      //     } else {
+      //       row.style.display = 'none';
+      //     }
+      //   });
+      // }
+
+      // Function to show averages across all experiments
+      function showAverages() {
+        // Clear the table
+        const tableBody = document.querySelector('#table1 tbody');
+        tableBody.innerHTML = '';
+        
+        // Group and calculate averages
+        const groupedData = {};
+        
+        // Clone the original data to avoid modifying it
+        const data = JSON.parse(JSON.stringify(window.originalData || []));
+        
+        // Group by model, conditioning, and prompt_type
+        data.forEach(row => {
+          const modelName = getColumnValue(row, ['model', 'model_name', 'Model Name', 'ModelName', 'Model']);
+          const conditioning = getColumnValue(row, ['conditioning', 'Conditioning']);
+          const promptType = getColumnValue(row, ['prompt_type', 'Prompt Type', 'PromptType', 'prompt', 'Prompt']);
+          
+          const key = `${modelName}-${conditioning}-${promptType}`;
+          
+          if (!groupedData[key]) {
+            groupedData[key] = {
+              model: modelName,
+              conditioning: conditioning,
+              prompt_type: promptType,
+              discard_rates: [],
+              physical_scores: [],
+              dynamical_scores: []
+            };
+          }
+          
+          // Add numeric values to arrays for averaging
+          const discardRate = parseFloat(getColumnValue(row, ['discard_rate', 'Discard Rate', 'DiscardRate', 'discard', 'Discard']));
+          const physicalScore = parseFloat(getColumnValue(row, ['overall_mean_physical_score', 'physical_invariance_score', 'Physical Invariance Score', 'Physical Score', 'PhysicalScore']));
+          const dynamicalScore = parseFloat(getColumnValue(row, ['overall_mean_statistical_score', 'dynamical_score', 'Dynamical Score', 'DynamicalScore']));
+          
+          if (!isNaN(discardRate)) groupedData[key].discard_rates.push(discardRate);
+          if (!isNaN(physicalScore)) groupedData[key].physical_scores.push(physicalScore);
+          if (!isNaN(dynamicalScore)) groupedData[key].dynamical_scores.push(dynamicalScore);
+        });
+        
+        // Calculate averages and add rows to table
+        Object.values(groupedData).forEach(group => {
+          // Calculate averages
+          const avgDiscardRate = group.discard_rates.length > 0 
+            ? group.discard_rates.reduce((sum, val) => sum + val, 0) / group.discard_rates.length 
+            : 'xxx';
+            
+          const avgPhysicalScore = group.physical_scores.length > 0 
+            ? group.physical_scores.reduce((sum, val) => sum + val, 0) / group.physical_scores.length 
+            : 'xxx';
+            
+          const avgDynamicalScore = group.dynamical_scores.length > 0 
+            ? group.dynamical_scores.reduce((sum, val) => sum + val, 0) / group.dynamical_scores.length 
+            : 'xxx';
+          
+          // Format the values
+          const formattedDiscardRate = formatNumberValue(avgDiscardRate, 2);
+          const formattedPhysicalScore = formatNumberValue(avgPhysicalScore, 3);
+          const formattedDynamicalScore = formatNumberValue(avgDynamicalScore, 3);
+          
+          // Create table row
+          const tr = document.createElement('tr');
+          
+          // Set background color
+          let bgColor = '';
+          if (group.model.includes('real-world') || group.model === 'real-world') {
+            bgColor = 'rgba(249, 242, 248, 1)';  // light pink
+          } else if (group.conditioning.includes('single frame') || group.conditioning === 'single frame') {
+            bgColor = 'rgba(255, 208, 80, 0.15)';  // light yellow
+          } else if (group.conditioning.includes('multi frame') || group.conditioning === 'multi frame') {
+            bgColor = 'rgba(117, 166, 215, 0.1)';  // light blue
+          } else if (group.conditioning.includes('keyframe interpolation') || group.conditioning === 'keyframe interpolation') {
+            bgColor = 'rgba(112, 230, 102, 0.1)';  // light green
+          }
+          
+          tr.style.backgroundColor = bgColor;
+          
+          // Add data to the row - note we're hiding the experiment column for averages
+          tr.innerHTML = `
+            <td style="text-align: left;"><b>${group.model || ''}</b></td>
+            <td>All Experiments</td>
+            <td>${group.conditioning || ''}</td>
+            <td>${group.prompt_type || ''}</td>
+            <td>${formattedDiscardRate}</td>
+            <td>${formattedPhysicalScore}</td>
+            <td>${formattedDynamicalScore}</td>
+          `;
+          
+          tableBody.appendChild(tr);
+        });
+      }
+
+    });
+
+    function reinitializeDataTable() {
+      console.log('Reinitializing DataTable...');
+
+      if ($('#table1').length === 0) {
+        console.error('Table element not found during reinitialization');
+        return;
+      }
+
+      if ($('#table1 tbody').length === 0) {
+        $('#table1').append('<tbody></tbody>');
+        console.log('Created new tbody element');
+      }
+
+      if (dataTableInitialized && $.fn.DataTable.isDataTable('#table1')) {
+        $('#table1').DataTable().destroy();
+        dataTableInitialized = false;
+        console.log('DataTable destroyed using jQuery method');
+      }
+
+
+      // const table = document.getElementById('table1');
+      // if (!table) {
+      //   console.error('Table element not found');
+      //   return;
+      // }
+
+      // let tbody = table.querySelector('tbody');
+      // if (!tbody) {
+      //   tbody = document.createElement('tbody');
+      //   table.appendChild(tbody);
+      //   console.log('Created new tbody element');
+      // }
+
+      // // make sure to destroy the existing DataTable instance
+      // if(window.dataTable) {
+      //   try {
+      //     window.dataTable.destroy();
+      //     console.log('DataTable manually destroyed');
+      //   } catch(e) {
+      //     console.log('Failed to destroy dataTable:', e);
+      //   }
+      // }
+      
+      // empty the table
+      // $('#table1').removeData();
+
+      setTimeout(function() {
+        try {
+          console.log('Initializing new DataTable...');
+          window.dataTable = $('#table1').DataTable({
+            paging: false,
+            searching: false,
+            info: false,
+            "order": [],
+            "columnDefs": [
+              { "targets": [0, 1, 2, 3], "orderable": false },
+              { "targets": [4, 5, 6], "orderable": true }
+            ],
+            "retrieve": true
+          });
+          dataTableInitialized = true;
+          console.log('DataTable initialized successfully');
+        } catch(e) {
+          console.error('Error initializing DataTable:', e);
+        }
+      }, 50); 
+    }
+        
+
+      // // initialize the table for sorting
+      // $(document).ready(function() {
+      //   $('#table1').DataTable({
+      //     paging: false,    // do not show the pagination
+      //     searching: false, // do not show the search box
+      //     info: false,      // do not show the information text
+      //     "order": [],      // default no sorting
+      //     "columnDefs": [
+      //       { "targets": [4, 5, 6], "orderable": true }, // make Discard Rate、Physical Invariance Score and Dynamical score columns sortable
+      //       { "targets": "_all", "orderable": true }     // all columns are sortable
+      //     ]
+      //   });
+      // });
+  </script>
+</body>
+</html>
+
