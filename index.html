@@ -6,7 +6,7 @@
   <!-- Replace the content tag with appropriate information -->
   <meta name="description" content="">
   <meta property="og:title" content="MORPHEUS"/>
-  <meta property="og:description" content="MORPHEUS: Benchmarking Physical Reasoning of Video Generative Models with Real Physical Experiments"/>
+  <meta property="og:description" content="MORPHEUS: MOdel Reasoning for PHysical Experiments Understanding and Scoring Benchmark"/>
   <meta property="og:url" content="https://morpheus-bench.github.io/"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
   <!-- <meta property="og:image" content="" />
@@ -64,6 +64,23 @@
     #toggleButton:hover {
     background-color: #e8e8e8;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    /* Table and content max-width constraints */
+    .js-sort-table {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    
+    /* Center content and add max-width for better readability */
+    @media screen and (min-width: 1600px) {
+      .container.is-max-desktop {
+        max-width: 1400px !important;
+      }
+      
+      .video-grid, .plot-grid, #plotly-container, #plotly-container2 {
+        max-width: 1400px !important;
+      }
     }
   </style>
 
